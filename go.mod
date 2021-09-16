@@ -1,4 +1,4 @@
-module dbcustom_plus
+module github.com/by-zxy/dbcustom_plus
 
 go 1.16
 

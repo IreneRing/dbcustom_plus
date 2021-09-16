@@ -1,6 +1,6 @@
 package ddb
 
-import "dbcustom_plus"
+import "github.com/by-zxy/dbcustom_plus"
 
 type processor struct {
 	*Dbmp

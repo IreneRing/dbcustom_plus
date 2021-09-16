@@ -1,7 +1,7 @@
 package ddb
 
 import (
-	"dbcustom_plus"
+	"github.com/by-zxy/dbcustom_plus"
 	"gorm.io/gorm/utils"
 )
 
