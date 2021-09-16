@@ -1,10 +1,10 @@
 package map_dbcustom_plus
 
 import (
-	"github.com/by-zxy/dbcustom_plus"
-	"github.com/by-zxy/dbcustom_plus/str_utils"
 	"errors"
 	"fmt"
+	"github.com/by-zxy/dbcustom_plus/ddb_utils"
+	"github.com/by-zxy/dbcustom_plus/str_utils"
 )
 
 type iInt = map[int]int
@@ -120,7 +120,7 @@ func (m *Map) getMap() string {
 
 // map.put
 func (m *Map) Put(key,value interface{}) *Map {
-	if dbcustom_plus.GetKind(key) == dbcustom_plus.PTR || dbcustom_plus.GetKind(value) == dbcustom_plus.PTR {
+	if ddb_utils.GetKind(key) == ddb_utils.PTR || ddb_utils.GetKind(value) == ddb_utils.PTR {
 		panic(errors.New("Map.Put: 参数只能是值，不能为指针"))
 	}
 	switch m.status {
@@ -138,7 +138,7 @@ func (m *Map) Put(key,value interface{}) *Map {
 }
 
 func (m *Map) PutAll(maps interface{}) *Map {
-	if dbcustom_plus.GetKind(maps) == dbcustom_plus.PTR {
+	if ddb_utils.GetKind(maps) == ddb_utils.PTR {
 		panic(errors.New("Map.PutAll: 参数map的值"))
 	}
 	switch m.status {
@@ -184,7 +184,7 @@ func (m *Map) PutAll(maps interface{}) *Map {
 
 // map.get
 func (m *Map) Get(key interface{}) interface{} {
-	if dbcustom_plus.GetKind(key) == dbcustom_plus.PTR {
+	if ddb_utils.GetKind(key) == ddb_utils.PTR {
 		panic(errors.New("Map.Get: 参数只能为值"))
 	}
 	switch m.status {
@@ -203,7 +203,7 @@ func (m *Map) Get(key interface{}) interface{} {
 
 // map.delete
 func (m *Map) DelKey(key interface{}) *Map {
-	if dbcustom_plus.GetKind(key) == dbcustom_plus.PTR {
+	if ddb_utils.GetKind(key) == ddb_utils.PTR {
 		panic(errors.New("Map.DelKey: 参数只能为值"))
 	}
 	switch m.status {
@@ -448,7 +448,7 @@ func (m *Map) AllOfIfVal() []interface{} {
 }
 
 func (m *Map) Contain(maps interface{}) bool {
-	if dbcustom_plus.GetKind(maps) == dbcustom_plus.PTR {
+	if ddb_utils.GetKind(maps) == ddb_utils.PTR {
 		panic(errors.New("Map.Contain: 参数只能为map值"))
 	}
 	switch m.status {
@@ -479,7 +479,7 @@ func (m *Map) Contain(maps interface{}) bool {
 			if vv, ok := m.ivMap[k]; !ok{
 				return false
 			}else {
-				if dbcustom_plus.GetKind(vv) != dbcustom_plus.GetKind(v) {
+				if ddb_utils.GetKind(vv) != ddb_utils.GetKind(v) {
 					return false
 				}
 				if !str_utils.Equals(fmt.Sprintf("%v", vv),fmt.Sprintf("%v", v)) {
@@ -515,7 +515,7 @@ func (m *Map) Contain(maps interface{}) bool {
 			if vv, ok := m.svMap[k]; !ok{
 				return false
 			}else {
-				if dbcustom_plus.GetKind(vv) != dbcustom_plus.GetKind(v) {
+				if ddb_utils.GetKind(vv) != ddb_utils.GetKind(v) {
 					return false
 				}
 				if !str_utils.Equals(fmt.Sprintf("%v", vv),fmt.Sprintf("%v", v)) {
@@ -551,7 +551,7 @@ func (m *Map) Contain(maps interface{}) bool {
 			if vv, ok := m.vvMap[k]; !ok{
 				return false
 			}else {
-				if dbcustom_plus.GetKind(vv) != dbcustom_plus.GetKind(v) {
+				if ddb_utils.GetKind(vv) != ddb_utils.GetKind(v) {
 					return false
 				}
 				if !str_utils.Equals(fmt.Sprintf("%v", vv),fmt.Sprintf("%v", v)) {

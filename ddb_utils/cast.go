@@ -1,4 +1,4 @@
-package dbcustom_plus
+package ddb_utils
 /*
 	github.com/spf13/cast
 	类型转换工具类，几乎所有常见类型之间转换，小巧但是非常的实用

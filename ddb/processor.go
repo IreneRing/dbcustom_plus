@@ -1,6 +1,8 @@
 package ddb
 
-import "github.com/by-zxy/dbcustom_plus"
+import (
+	"github.com/by-zxy/dbcustom_plus/ddb_utils"
+)
 
 type processor struct {
 	*Dbmp
@@ -48,7 +50,7 @@ func (p *processor) count(isRest bool) *processor {
 }
 
 func (p *processor) create() *processor {
-	of := dbcustom_plus.NewAllOfReflect(p.dDB.dest).NewOfDic(false)
+	of := ddb_utils.NewAllOfReflect(p.dDB.dest).NewOfDic(false)
 	for k, _ := range of.ValueOfName {
 		p.Dbmp.statement.columns(k)
 	}

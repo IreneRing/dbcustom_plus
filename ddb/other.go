@@ -1,7 +1,7 @@
 package ddb
 
 import (
-	"github.com/by-zxy/dbcustom_plus"
+	"github.com/by-zxy/dbcustom_plus/ddb_utils"
 	"gorm.io/gorm/utils"
 )
 
@@ -43,17 +43,17 @@ func (o *other) page(page, limit int) *other {
 }
 
 func (o *other) condition(cdn cdn, args interface{}) *other {
-	if dbcustom_plus.IsNon(args) {
+	if ddb_utils.IsNon(args) {
 		switch cdn {
 			case asc:		o.asc(utils.ToString(args))
 			case desc:		o.desc(utils.ToString(args))
 			case limit:
-				o.limit(dbcustom_plus.ToInt(args))
+				o.limit(ddb_utils.ToInt(args))
 			case page:
 				if o.paging == nil { //当前分页空
-					o.page(dbcustom_plus.ToInt(args),1)
+					o.page(ddb_utils.ToInt(args),1)
 				} else { //当前存在分页
-					o.page(dbcustom_plus.ToInt(args), o.paging.limit)
+					o.page(ddb_utils.ToInt(args), o.paging.limit)
 				}
 		}
 	}

@@ -1,4 +1,4 @@
-package dbcustom_plus
+package ddb_utils
 import (
 	"fmt"
 	"reflect"
@@ -69,7 +69,7 @@ func CopySymbol(cp interface{}, args ...string) string {
 	strSuf := fmt.Sprint(strings.Join(args,""),cp)
 	var strPre string
 	for i := 0; i < len(args); i++{
-		strPre = fmt.Sprint(strPre,GetSymmetrySymbol(StringReverse(args[len(args)-i-1])))
+		strPre = fmt.Sprint(strPre, GetSymmetrySymbol(StringReverse(args[len(args)-i-1])))
 	}
 	return fmt.Sprint(strSuf,strPre)
 }

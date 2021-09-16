@@ -1,7 +1,7 @@
 package ddb
 
 import (
-	"github.com/by-zxy/dbcustom_plus"
+	"github.com/by-zxy/dbcustom_plus/ddb_utils"
 	"strings"
 )
 
@@ -68,13 +68,13 @@ func buildQueryAndArg(cdn cdn, column string, arg interface{}) (string,interface
 	// gorm 模糊通配符只能写入参数里面
 	case like:
 		argRt = column+" LIKE ?"
-		arg = "%"+dbcustom_plus.ToString(arg)+"%"
+		arg = "%"+ ddb_utils.ToString(arg)+"%"
 	case starting:
 		argRt = column+" LIKE ?"
-		arg = dbcustom_plus.ToString(arg)+"%"
+		arg = ddb_utils.ToString(arg)+"%"
 	case ending:
 		argRt = column+" LIKE ?"
-		arg = "%"+dbcustom_plus.ToString(arg)
+		arg = "%"+ ddb_utils.ToString(arg)
 	}
 	return argRt,arg
 }

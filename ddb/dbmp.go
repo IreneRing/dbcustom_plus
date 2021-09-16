@@ -1,7 +1,7 @@
 package ddb
 
 import (
-	"github.com/by-zxy/dbcustom_plus"
+	"github.com/by-zxy/dbcustom_plus/ddb_utils"
 	"github.com/by-zxy/dbcustom_plus/str_utils"
 	"gorm.io/gorm/utils"
 	"log"
@@ -396,16 +396,16 @@ func (dp *Dbmp) HavingNin(column string, arg interface{}) *Dbmp {
 // for init params to make a statement
 func (dp *Dbmp) InitParams(model interface{}) *Dbmp {
 
-	of := dbcustom_plus.NewAllOfReflect(model).NewOfDic(false)
+	of := ddb_utils.NewAllOfReflect(model).NewOfDic(false)
 	vj := of.ValueOfJson
 	for json, tag := range of.TagsOfJson {
-		if str_utils.IsNotBlank(tag[dbcustom_plus.QUERY]){
+		if str_utils.IsNotBlank(tag[ddb_utils.QUERY]){
 			// where
-			querys := strings.Split(tag[dbcustom_plus.QUERY], ",")
+			querys := strings.Split(tag[ddb_utils.QUERY], ",")
 			// join -  先判断是否为关联库的字段
-			if str_utils.IsNotBlank(tag[dbcustom_plus.JOIN]){
+			if str_utils.IsNotBlank(tag[ddb_utils.JOIN]){
 				//dp.statement.join.condition(cdn(querys[0]),tag[utils.JOIN],querys[1],vj[json])
-				dp.statement.pldWhere.preloads(tag[dbcustom_plus.JOIN],buildQuery(cdn(querys[0]),querys[1],utils.ToString(vj[json])) )
+				dp.statement.pldWhere.preloads(tag[ddb_utils.JOIN],buildQuery(cdn(querys[0]),querys[1],utils.ToString(vj[json])) )
 				continue
 			}
 

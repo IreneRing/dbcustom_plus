@@ -1,4 +1,4 @@
-package dbcustom_plus
+package ddb_utils
 
 import (
 	"reflect"
@@ -156,7 +156,7 @@ func (o *OfReflect) GetNonJsonReflect () *OfReflect {
 }
 
 // 反射Column/Json的tags/value
-func (o *OfReflect) NewOfDic(hasNull bool) *OfDic{
+func (o *OfReflect) NewOfDic(hasNull bool) *OfDic {
 	tagsOfName := make(map[string]map[string]string)
 	tagsOfJson := make(map[string]map[string]string)
 	valueOfName := make(map[string]interface{})
