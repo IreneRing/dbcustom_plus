@@ -1,8 +1,8 @@
 package ddb
 
 import (
-	"dbcustom_plus"
-	"dbcustom_plus/str_utils"
+	"github.com/by-zxy/dbcustom_plus"
+	"github.com/by-zxy/dbcustom_plus/str_utils"
 	"gorm.io/gorm/utils"
 	"log"
 	"strings"
