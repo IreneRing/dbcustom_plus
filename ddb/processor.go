@@ -74,7 +74,7 @@ func (p *processor) delete() *processor {
 
 // 获取新Dbmp,里面statement已经清空
 func (p *processor) callMapper() *Dbmp {
-	dataMapper := NewDbmp()
+	dataMapper := initDbmp()
 	dataMapper.Result = Result{
 		Error:        p.Dbmp.dDB.db.Error,
 		RowsAffected: p.Dbmp.dDB.db.RowsAffected,

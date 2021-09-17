@@ -24,7 +24,7 @@ func (t *Tx) Delete(modal interface{})  {
 
 func Transaction(fc func(t *Tx)) error {
 	tm := &Tx{
-		dp: 	NewDbmp(),
+		dp: 	initDbmp(),
 	}
 	return tm.dp.transaction(func(m *Dbmp) error {
 		fc(tm)

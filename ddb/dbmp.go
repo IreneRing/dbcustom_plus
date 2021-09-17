@@ -3,6 +3,7 @@ package ddb
 import (
 	"github.com/by-zxy/dbcustom_plus/ddb_utils"
 	"github.com/by-zxy/dbcustom_plus/str_utils"
+	"gorm.io/gorm"
 	"gorm.io/gorm/utils"
 	"log"
 	"strings"
@@ -22,6 +23,21 @@ type Result struct {
 	Count 			int64 //总数
 }
 
+func NewDbmp(defDb *gorm.DB) *Dbmp {
+	db(defDb)
+	return initDbmp()
+}
+
+func initDbmp() *Dbmp {
+	dataMapper := &Dbmp{}
+	dataMapper.dDB = newDB()
+
+	dataMapper.statement = &statement{
+		Dbmp: dataMapper,
+	}
+	return dataMapper
+}
+
 // new Mapper and a statement , 保持原来mapper不变
 func (dp *Dbmp) clone() *Dbmp {
 	dataMapper := &Dbmp{}
@@ -39,16 +55,6 @@ func (dp *Dbmp) clone() *Dbmp {
 		dataMapper.statement = &statement{
 			Dbmp: dataMapper,
 		}
-	}
-	return dataMapper
-}
-
-func NewDbmp() *Dbmp {
-	dataMapper := &Dbmp{}
-	dataMapper.dDB = newDB()
-
-	dataMapper.statement = &statement{
-		Dbmp: dataMapper,
 	}
 	return dataMapper
 }

@@ -31,11 +31,10 @@ gorm结构体(返回)封装参考:(references:关联主表字段名, foreignKey:
     TTestSpp 	[]model.TTestSpp `json:"tTestSpp,omitempty" gorm:"foreignKey:Uuid;references:TestUuid"`
     
 gorm封装使用步骤:  
-    1.调用 NewDB(...) 设置gorm指针
-    2.调用 NewDbmp() 返回包装结构体指针
-    3.可以使用InitParams() 封装查询条件,返回包装结构体指针
-    4.使用第2步获取的指针进行函数操作,最好调用curd方法...
-    5.使用第3步返回含有Result结构体,其提供影响行数,错误,总数(针对分页)
+    1.调用 NewDbmp(defDb *gorm.DB) 设置gorm指针,返回包装结构体指针
+    2.可以使用InitParams() 封装查询条件,返回包装结构体指针
+    3.使用第2步获取的指针进行函数操作,最好调用curd方法...
+    4.使用第3步返回含有Result结构体,其提供影响行数,错误,总数(针对分页)
 
 gorm封装使用事务: 调用 Transaction(func(...)...),实现返回函数 - 调用增删改方法
 

@@ -1,6 +1,7 @@
 package ddb
 
 import (
+	"errors"
 	"gorm.io/gorm"
 )
 
@@ -32,18 +33,18 @@ func (db *dDB) clone() *dDB {
 	return tx
 }
 
-var defDb *gorm.DB
+var gdb *gorm.DB
 // you can update this func
 // get a new DB
-func NewDB(db *gorm.DB) {
-	defDb = db
+func db(defDb *gorm.DB) {
+	gdb = defDb
 }
 
 func newDB() *dDB {
-	if defDb == nil {
-
+	if gdb == nil {
+		panic(errors.New("newDB: 参数gorm.DB为指针"))
 	}
-	tmpDB := *defDb
+	tmpDB := *gdb
 	return &dDB{
 		db: &tmpDB,
 	}
