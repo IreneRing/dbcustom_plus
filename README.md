@@ -7,7 +7,7 @@ dbcustom_plus
 #### 说明
 gorm封装提供方法: 字段,条件,聚合函数,条件函数,预加载,自定义,事务等方法
 
-gorm结构体(接收传入参数)条件封装方法(使用InitParams): 
+gorm结构体(接收)自动封装条件方法(InitParams) -参数必要操作: 
     1.时间,数组,自定义等类型 建议使用String
     2.参数tag定义:`json:"sppUuidInclude" form:"sppUuidInclude" query:"in,uuid" join:"TTestSpp"`
         1.json/form: 接收传参
